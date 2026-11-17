@@ -15,7 +15,7 @@ English — all documentation, backlog items, code comments, and other generated
 
 ## Compatibility scope <!-- keep -->
 
-MUGEN/Ikemen GO screenpacks (`system.def`, `select.def`) are **out of** the org's compatibility MUST: they are not read nor converted (roadmap decision `029`). The format here is OpenKakutou's own: JSONC validated by published JSON Schemas, anchor + offset layout in relative units, standard assets only (PNG/WebP, OGG/Opus, TTF/OTF/WOFF2). Lifebars are not part of a screenpack (roadmap decision `031`). A screenpack describes appearance only, never behavior (no scripting, no new menu actions; roadmap decisions `029`, `030`). The org-wide MUST still applies to combat content, which this repo never touches.
+MUGEN/Ikemen GO screenpacks (`system.def`, `select.def`) are **out of** the org's compatibility MUST: they are not read nor converted (roadmap decision `029`). The format here is OpenKakutou's own: JSONC validated by published JSON Schemas, anchor + offset layout in relative units, standard assets only (PNG/WebP, OGG/Opus, TTF/OTF/WOFF2). Lifebars are not part of a screenpack (roadmap decision `031`). A screenpack describes appearance only, never behavior (no scripting, no new menu actions; roadmap decisions `029`, `030`). The org-wide MUST still applies to combat content, which this repo never touches; for that content Ikemen GO is the verification reference (roadmap decision `038`).
 
 ## Release propagation <!-- keep -->
 
