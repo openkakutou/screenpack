@@ -16,7 +16,7 @@ if errors.As(err, &problems) {
 }
 ```
 
-`sp.Screens` holds the screens the pack has; a nil screen falls back to the default screenpack's. `sp.Warnings` lists what was ignored, such as an unknown file in `screens/`.
+`sp.Screens` holds the screens the pack has; `sp.Warnings` lists what was ignored, such as an unknown file in `screens/`. `screenpack.Resolve(sp, def)` then fills every missing screen, and every part a pack screen leaves out, from the default screenpack `def`; `Source(screen, part)` tells which pack each one comes from, so its text styles, fonts and assets are looked up there.
 
 ## License
 

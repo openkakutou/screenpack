@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `screenpack.Resolve` completes a screenpack from the default one: a missing screen is the default's, a part a screen leaves out is the default screen's part, and `Source` says which pack each screen and part comes from.
+
 ## [0.4.0] - 2026-11-19
 
 ### Added

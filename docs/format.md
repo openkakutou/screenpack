@@ -18,7 +18,7 @@ flowchart LR
   use --> game[game draws the screen<br/>with its own data:<br/>roster, portraits, names, options]
 ```
 
-The diagram shows the per-screen fallback: each screen comes whole from the selected screenpack, or whole from `default` when the selected one does not have it. Screens are never merged element by element.
+The diagram shows the per-screen fallback: a screen the selected screenpack does not have comes whole from `default`. Within a screen it has, a [part](#screen-files) it leaves out is the `default` screen's part; its other fields (background, foreground, music, sounds, text styles, transition) are never merged. Whatever comes from `default` keeps using `default`'s text styles, fonts and assets.
 
 ## Folder
 
