@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/options.schema.json",
+  "title": "Screenpack screen: options",
+  "description": "screens/options.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "$ref": "common.schema.json#/$defs/sounds"
+    },
+    "tabs": {
+      "$ref": "common.schema.json#/$defs/menu"
+    },
+    "menu": {
+      "$ref": "common.schema.json#/$defs/valuedMenu"
+    },
+    "hint": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "title": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "controls": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/layout"
+        }
+      ],
+      "properties": {
+        "style": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "slotStyle": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "waitingStyle": {
+          "$ref": "common.schema.json#/$defs/id"
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

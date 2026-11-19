@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/continue.schema.json",
+  "title": "Screenpack screen: continue",
+  "description": "screens/continue.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "move": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "confirm": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "cancel": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "error": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "tick": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "gameOver": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        }
+      }
+    },
+    "portrait": {
+      "$ref": "common.schema.json#/$defs/layoutPart"
+    },
+    "countdown": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "message": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "menu": {
+      "$ref": "common.schema.json#/$defs/menu"
+    }
+  },
+  "unevaluatedProperties": false
+}

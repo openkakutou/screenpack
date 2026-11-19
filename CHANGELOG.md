@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- JSON Schemas for format version 1 in `schema/v1/`: `screenpack.json`, sprite sheets and every screen, published at `https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/<kind>.schema.json` for editor completion. The `schema` Go package validates a JSONC document against them and names the JSON path of each problem.
+
 ## [0.1.0] - 2026-11-19
 
 ### Added

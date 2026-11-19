@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/screenpack.schema.json",
+  "title": "Screenpack root file",
+  "description": "screenpack.json: a screenpack's identity and defaults. See docs/format.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formatVersion",
+    "name",
+    "author",
+    "version",
+    "fonts",
+    "textStyles",
+    "sounds"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "formatVersion": {
+      "const": 1
+    },
+    "name": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "author": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "fonts": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "common.schema.json#/$defs/fontPath"
+      }
+    },
+    "textStyles": {
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/textStyles"
+        }
+      ],
+      "required": [
+        "default"
+      ]
+    },
+    "sounds": {
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/sounds"
+        }
+      ],
+      "required": [
+        "move",
+        "confirm",
+        "cancel",
+        "error"
+      ]
+    },
+    "music": {
+      "$ref": "common.schema.json#/$defs/music"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/stageSelect.schema.json",
+  "title": "Screenpack screen: stage select",
+  "description": "screens/stageSelect.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "$ref": "common.schema.json#/$defs/sounds"
+    },
+    "sort": {
+      "$ref": "common.schema.json#/$defs/sort"
+    },
+    "preview": {
+      "$ref": "common.schema.json#/$defs/layoutPart"
+    },
+    "name": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "title": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "arrows": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "left": {
+          "$ref": "common.schema.json#/$defs/element"
+        },
+        "right": {
+          "$ref": "common.schema.json#/$defs/element"
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

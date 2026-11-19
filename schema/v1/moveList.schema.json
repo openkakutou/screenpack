@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/moveList.schema.json",
+  "title": "Screenpack screen: move list",
+  "description": "screens/moveList.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "$ref": "common.schema.json#/$defs/sounds"
+    },
+    "title": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "list": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/layout"
+        }
+      ],
+      "properties": {
+        "style": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "visibleLines": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "lineSpacing": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "buttons": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sheet"
+      ],
+      "properties": {
+        "sheet": {
+          "$ref": "common.schema.json#/$defs/sheetPath"
+        },
+        "frames": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "up": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "down": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "forward": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "back": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "a": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "b": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "c": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "x": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "y": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "z": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "start": {
+              "$ref": "common.schema.json#/$defs/id"
+            }
+          }
+        }
+      }
+    },
+    "scrollbar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "track": {
+          "$ref": "common.schema.json#/$defs/element"
+        },
+        "thumb": {
+          "$ref": "common.schema.json#/$defs/element"
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

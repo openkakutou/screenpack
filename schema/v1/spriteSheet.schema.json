@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/spriteSheet.schema.json",
+  "title": "Screenpack sprite sheet",
+  "description": "A sprite-sheet description: an image cut into frames and animations. See docs/format.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "image",
+    "frames"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "image": {
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/imagePath"
+        }
+      ],
+      "description": "Relative to this file's folder."
+    },
+    "frames": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "prefixItems": [
+          {
+            "type": "integer",
+            "minimum": 0
+          },
+          {
+            "type": "integer",
+            "minimum": 0
+          },
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "type": "integer",
+            "minimum": 1
+          }
+        ],
+        "description": "[x, y, width, height] in image pixels."
+      }
+    },
+    "animations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "frames"
+        ],
+        "properties": {
+          "loop": {
+            "type": "boolean"
+          },
+          "frames": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "frame",
+                "ms"
+              ],
+              "properties": {
+                "frame": {
+                  "$ref": "common.schema.json#/$defs/id"
+                },
+                "ms": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

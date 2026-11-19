@@ -1,0 +1,624 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/common.schema.json",
+  "title": "Screenpack shared definitions",
+  "description": "Definitions shared by every screenpack schema. See docs/format.md.",
+  "$defs": {
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "^/|^[A-Za-z]:|\\\\|(^|/)\\.\\.(/|$)"
+      },
+      "description": "Relative to the screenpack folder, with '/', staying inside it."
+    },
+    "imagePath": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "type": "string",
+          "pattern": "(?i)\\.(png|webp)$"
+        }
+      ],
+      "description": "A PNG or WebP image."
+    },
+    "sheetPath": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "type": "string",
+          "pattern": "(?i)\\.(json)$"
+        }
+      ],
+      "description": "A sprite-sheet description."
+    },
+    "soundPath": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "type": "string",
+          "pattern": "(?i)\\.(ogg)$"
+        }
+      ],
+      "description": "An OGG (Vorbis or Opus) sound."
+    },
+    "fontPath": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "type": "string",
+          "pattern": "(?i)\\.(ttf|otf|woff2)$"
+        }
+      ],
+      "description": "A TTF, OTF or WOFF2 font."
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$",
+      "description": "#rrggbb or #rrggbbaa."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "point": {
+      "enum": [
+        "topLeft",
+        "top",
+        "topRight",
+        "left",
+        "center",
+        "right",
+        "bottomLeft",
+        "bottom",
+        "bottomRight"
+      ]
+    },
+    "pair": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "layout": {
+      "description": "Anchor + offset placement, in units of 1/100 of the screen height.",
+      "properties": {
+        "anchor": {
+          "$ref": "#/$defs/point"
+        },
+        "pivot": {
+          "$ref": "#/$defs/point"
+        },
+        "offset": {
+          "$ref": "#/$defs/pair"
+        },
+        "size": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            }
+          ]
+        }
+      }
+    },
+    "textStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "font",
+        "size",
+        "color"
+      ],
+      "properties": {
+        "font": {
+          "$ref": "#/$defs/id"
+        },
+        "size": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "align": {
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "outline": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "color",
+            "width"
+          ],
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/color"
+            },
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "shadow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "color",
+            "offset"
+          ],
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/color"
+            },
+            "offset": {
+              "$ref": "#/$defs/pair"
+            }
+          }
+        },
+        "uppercase": {
+          "type": "boolean"
+        }
+      }
+    },
+    "textStyles": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/textStyle"
+      }
+    },
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "none",
+            "fade",
+            "slide",
+            "scale"
+          ]
+        },
+        "ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "delayMs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "easing": {
+          "enum": [
+            "linear",
+            "easeIn",
+            "easeOut",
+            "easeInOut"
+          ]
+        },
+        "from": {
+          "oneOf": [
+            {
+              "enum": [
+                "left",
+                "right",
+                "top",
+                "bottom"
+              ]
+            },
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          ]
+        }
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "in": {
+          "$ref": "#/$defs/effect"
+        },
+        "out": {
+          "$ref": "#/$defs/effect"
+        }
+      }
+    },
+    "element": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/layout"
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "image"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "image": {
+                "$ref": "#/$defs/imagePath"
+              },
+              "sheet": {
+                "$ref": "#/$defs/sheetPath"
+              },
+              "animation": {
+                "$ref": "#/$defs/id"
+              },
+              "frame": {
+                "$ref": "#/$defs/id"
+              },
+              "tile": {
+                "enum": [
+                  "none",
+                  "x",
+                  "y",
+                  "both"
+                ]
+              },
+              "scroll": {
+                "$ref": "#/$defs/pair"
+              }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "image"
+                ],
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "sheet"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "animation"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "frame"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "sheet"
+                ],
+                "oneOf": [
+                  {
+                    "required": [
+                      "animation"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "frame"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "text"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "style": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "rect"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "color"
+            ],
+            "properties": {
+              "color": {
+                "$ref": "#/$defs/color"
+              },
+              "radius": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "image",
+            "text",
+            "rect"
+          ]
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "transition": {
+          "$ref": "#/$defs/transition"
+        }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/element"
+      }
+    },
+    "music": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "$ref": "#/$defs/soundPath"
+        },
+        "volume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "loopStartMs": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "sounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "move": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "confirm": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "cancel": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "error": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        }
+      },
+      "description": "Menu sounds; any left out keep the screenpack's defaults."
+    },
+    "layoutPart": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/layout"
+        }
+      ]
+    },
+    "textPart": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/layout"
+        }
+      ],
+      "properties": {
+        "style": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "menuFields": {
+      "properties": {
+        "direction": {
+          "enum": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        "spacing": {
+          "type": "number",
+          "minimum": 0
+        },
+        "visibleEntries": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "style": {
+          "$ref": "#/$defs/id"
+        },
+        "activeStyle": {
+          "$ref": "#/$defs/id"
+        },
+        "disabledStyle": {
+          "$ref": "#/$defs/id"
+        },
+        "cursor": {
+          "$ref": "#/$defs/element"
+        },
+        "order": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "hidden": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "sounds": {
+          "$ref": "#/$defs/sounds"
+        }
+      }
+    },
+    "menu": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/layout"
+        },
+        {
+          "$ref": "#/$defs/menuFields"
+        }
+      ]
+    },
+    "valuedMenu": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/layout"
+        },
+        {
+          "$ref": "#/$defs/menuFields"
+        }
+      ],
+      "properties": {
+        "valueStyle": {
+          "$ref": "#/$defs/id"
+        },
+        "valueOffset": {
+          "$ref": "#/$defs/pair"
+        }
+      }
+    },
+    "sort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "by"
+      ],
+      "properties": {
+        "by": {
+          "enum": [
+            "folder",
+            "displayName",
+            "author"
+          ]
+        },
+        "descending": {
+          "type": "boolean"
+        }
+      }
+    },
+    "screen": {
+      "description": "Fields every screen file has.",
+      "required": [
+        "formatVersion"
+      ],
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "formatVersion": {
+          "const": 1
+        },
+        "background": {
+          "$ref": "#/$defs/elements"
+        },
+        "foreground": {
+          "$ref": "#/$defs/elements"
+        },
+        "music": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/music"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "textStyles": {
+          "$ref": "#/$defs/textStyles"
+        },
+        "transition": {
+          "$ref": "#/$defs/transition"
+        }
+      }
+    }
+  }
+}

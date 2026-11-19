@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/victory.schema.json",
+  "title": "Screenpack screen: victory",
+  "description": "screens/victory.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "$ref": "common.schema.json#/$defs/sounds"
+    },
+    "portrait": {
+      "$ref": "common.schema.json#/$defs/layoutPart"
+    },
+    "name": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "message": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "unevaluatedProperties": false
+}

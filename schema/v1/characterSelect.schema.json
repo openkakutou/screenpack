@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/characterSelect.schema.json",
+  "title": "Screenpack screen: character select",
+  "description": "screens/characterSelect.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "move": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "confirm": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "cancel": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "error": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "confirmP1": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "confirmP2": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        },
+        "random": {
+          "$ref": "common.schema.json#/$defs/soundPath"
+        }
+      }
+    },
+    "grid": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/layout"
+        }
+      ],
+      "properties": {
+        "columns": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cellSize": {
+          "$ref": "common.schema.json#/$defs/pair"
+        },
+        "spacing": {
+          "$ref": "common.schema.json#/$defs/pair"
+        },
+        "cell": {
+          "$ref": "common.schema.json#/$defs/element"
+        },
+        "emptyCell": {
+          "$ref": "common.schema.json#/$defs/element"
+        },
+        "random": {
+          "$ref": "common.schema.json#/$defs/element"
+        }
+      }
+    },
+    "sort": {
+      "$ref": "common.schema.json#/$defs/sort"
+    },
+    "cursor": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p1": {
+          "$ref": "common.schema.json#/$defs/element"
+        },
+        "p2": {
+          "$ref": "common.schema.json#/$defs/element"
+        },
+        "both": {
+          "$ref": "common.schema.json#/$defs/element"
+        }
+      }
+    },
+    "portrait": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p1": {
+          "$ref": "common.schema.json#/$defs/layoutPart"
+        },
+        "p2": {
+          "$ref": "common.schema.json#/$defs/layoutPart"
+        },
+        "mirrorP2": {
+          "type": "boolean"
+        }
+      }
+    },
+    "name": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p1": {
+          "$ref": "common.schema.json#/$defs/textPart"
+        },
+        "p2": {
+          "$ref": "common.schema.json#/$defs/textPart"
+        }
+      }
+    },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p1": {
+          "$ref": "common.schema.json#/$defs/textPart"
+        },
+        "p2": {
+          "$ref": "common.schema.json#/$defs/textPart"
+        }
+      }
+    },
+    "title": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    }
+  },
+  "unevaluatedProperties": false
+}

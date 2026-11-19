@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/pause.schema.json",
+  "title": "Screenpack screen: pause",
+  "description": "screens/pause.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "$ref": "common.schema.json#/$defs/sounds"
+    },
+    "dim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "$ref": "common.schema.json#/$defs/color"
+        }
+      }
+    },
+    "title": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "menu": {
+      "$ref": "common.schema.json#/$defs/menu"
+    }
+  },
+  "unevaluatedProperties": false
+}

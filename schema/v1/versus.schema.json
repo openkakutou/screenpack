@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/versus.schema.json",
+  "title": "Screenpack screen: VS screen",
+  "description": "screens/versus.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "$ref": "common.schema.json#/$defs/sounds"
+    },
+    "portrait": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p1": {
+          "$ref": "common.schema.json#/$defs/layoutPart"
+        },
+        "p2": {
+          "$ref": "common.schema.json#/$defs/layoutPart"
+        },
+        "mirrorP2": {
+          "type": "boolean"
+        }
+      }
+    },
+    "name": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p1": {
+          "$ref": "common.schema.json#/$defs/textPart"
+        },
+        "p2": {
+          "$ref": "common.schema.json#/$defs/textPart"
+        }
+      }
+    },
+    "stage": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "unevaluatedProperties": false
+}

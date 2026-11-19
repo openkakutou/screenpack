@@ -39,7 +39,7 @@ Only `screenpack.json` is required. The `images/`, `sounds/` and `fonts/` folder
 
 ## Syntax
 
-Every file is **JSONC**: JSON with `//` and `/* */` comments and trailing commas allowed, UTF-8. Each file kind has a published JSON Schema (backlog item 002); a file may name it in `$schema` for editor completion. Unknown fields are refused, so a typo is reported instead of silently ignored.
+Every file is **JSONC**: JSON with `//` and `/* */` comments and trailing commas allowed, UTF-8. Each file kind has a published JSON Schema, in [`schema/v1/`](../schema/v1/) and at `https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/<kind>.schema.json`: `screenpack`, `spriteSheet`, and one per screen named after its file (`title`, `characterSelect`…). A file may name its schema in `$schema` for editor completion. Unknown fields are refused, so a typo is reported instead of silently ignored.
 
 **Paths** are relative to the screenpack folder, written with `/`, and stay inside it: no absolute path, no `..`. A referenced file that does not exist is an error.
 
@@ -218,7 +218,7 @@ The screen file names match `game`'s built-in screen types (game#032) and its mo
 | `name` | `p1`, `p2`: `style` + layout | The hovered character's display name, from its `.def`. |
 | `palette` | `p1`, `p2`: `style` + layout | The chosen palette number, while choosing it. |
 | `title` | `style` + layout | The screen title ("Player 1", "Select your fighter"…), from the game. |
-| `sounds` | `confirmP1`, `confirmP2`, `random` | Extra sounds for this screen. |
+| `sounds` | the common four, plus `confirmP1`, `confirmP2`, `random` | This screen's sounds, including its extra ones. |
 
 ### `stageSelect.json` — stage select
 
@@ -272,7 +272,7 @@ Option values are settings (`gameplay.json`, `audio.json`, `video.json`, `contro
 |---|---|---|
 | `title` | `style` + layout | The character's name. |
 | `list` | `style`, `visibleLines`, `lineSpacing` + layout | The character's moves, from its own files. |
-| `buttons` | `sheet` + frame per button id (`up`, `down`, `forward`, `back`, `a`, `b`, `c`, `x`, `y`, `z`, `start`) | Icons replacing button names in the moves. Missing icons fall back to text. |
+| `buttons` | `sheet`, and `frames`: a frame id per button id (`up`, `down`, `forward`, `back`, `a`, `b`, `c`, `x`, `y`, `z`, `start`) | Icons replacing button names in the moves. Missing icons fall back to text. |
 | `scrollbar` | `track`, `thumb`: elements | Shown when the list is longer than `visibleLines`. |
 
 ### `results.json` — results
@@ -292,7 +292,7 @@ Option values are settings (`gameplay.json`, `audio.json`, `video.json`, `contro
 | `countdown` | `style` + layout | The seconds left. |
 | `message` | `style` + layout | "Continue?". |
 | `menu` | [menu](#menus) | `yes`, `no`. |
-| `sounds` | `tick`, `gameOver` | Each countdown second; the end. |
+| `sounds` | the common four, plus `tick`, `gameOver` | This screen's sounds; `tick` each countdown second, `gameOver` at the end. |
 
 ### `victory.json` — victory
 
@@ -323,7 +323,7 @@ screenpacks/neon/
 
 ```jsonc
 {
-  "$schema": "https://openkakutou.github.io/screenpack/schema/v1/screenpack.schema.json",
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/screenpack.schema.json",
   "formatVersion": 1,
   "name": "Neon",
   "author": "Jane Doe",

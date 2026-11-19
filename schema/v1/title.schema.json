@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/title.schema.json",
+  "title": "Screenpack screen: title and main menu",
+  "description": "screens/title.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "sounds": {
+      "$ref": "common.schema.json#/$defs/sounds"
+    },
+    "logo": {
+      "$ref": "common.schema.json#/$defs/element"
+    },
+    "menu": {
+      "$ref": "common.schema.json#/$defs/menu"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "pressStart": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/layout"
+        }
+      ],
+      "properties": {
+        "style": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "text": {
+          "type": "string"
+        },
+        "blinkMs": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}
