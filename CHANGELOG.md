@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-19
+
 ### Added
 - `screenpack.Load` reads a screenpack folder (or an in-memory file set) into a typed model: every file checked against its schema, then every referenced file, font, text style, sprite-sheet frame and animation checked to exist. All problems are reported at once, each with its file, JSON path and reason; unknown files in `screens/` are warnings, not errors.
 
@@ -20,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Screenpack format specification (`docs/format.md`), format version 1: root `screenpack.json`, one JSONC file per screen with per-screen fallback to `default`, anchor + offset layout in screen-height units, sprite sheets, text styles, transitions, menus, music and sounds, every screen's parts, a complete example and the validation rules.
 
-[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/openkakutou/screenpack/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/openkakutou/screenpack/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/openkakutou/screenpack/releases/tag/v0.1.0
