@@ -7,4 +7,4 @@ require (
 	github.com/tailscale/hujson v0.0.0-20260727124030-b80ff77dac4f
 )
 
-require golang.org/x/text v0.14.0 // indirect
+require golang.org/x/text v0.14.0

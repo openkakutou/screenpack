@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `screenpack.Load` reads a screenpack folder (or an in-memory file set) into a typed model: every file checked against its schema, then every referenced file, font, text style, sprite-sheet frame and animation checked to exist. All problems are reported at once, each with its file, JSON path and reason; unknown files in `screens/` are warnings, not errors.
+
 ## [0.2.0] - 2026-11-19
 
 ### Added

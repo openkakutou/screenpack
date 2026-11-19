@@ -4,6 +4,20 @@ OpenKakutou `screenpack` holds the OpenKakutou-specific screenpack format (roadm
 
 Part of [OpenKakutou](https://github.com/openkakutou). Early stage: see `.vibe/backlog/` for the planned work.
 
+## Go library
+
+```go
+sp, err := screenpack.Load(os.DirFS("screenpacks/neon"))
+var problems screenpack.Problems
+if errors.As(err, &problems) {
+	for _, p := range problems {
+		fmt.Println(p.File, p.Path, p.Reason) // e.g. screens/pause.json /title/style unknown text style "huge"
+	}
+}
+```
+
+`sp.Screens` holds the screens the pack has; a nil screen falls back to the default screenpack's. `sp.Warnings` lists what was ignored, such as an unknown file in `screens/`.
+
 ## License
 
 MIT, see [LICENSE](LICENSE).

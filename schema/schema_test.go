@@ -3,6 +3,7 @@ package schema
 import (
 	"bufio"
 	"encoding/json"
+	"errors"
 	"io/fs"
 	"os"
 	"regexp"
@@ -189,5 +190,30 @@ func TestSchemas_CarryTheFormatVersion(t *testing.T) {
 		if err == nil || !strings.Contains(err.Error(), "/formatVersion") {
 			t.Errorf("%s: formatVersion 2 not refused: %v", kind, err)
 		}
+	}
+}
+
+func TestValidate_ListsEveryProblemWithItsPathAndReason(t *testing.T) {
+	err := Validate("pause", []byte(`{"formatVersion": 1, "dim": {"color": 3}, "title": {"colour": "#fff"}}`))
+	var invalid Invalid
+	if !errors.As(err, &invalid) {
+		t.Fatalf("got %T %v, want Invalid", err, err)
+	}
+	got := map[string]string{}
+	for _, issue := range invalid {
+		got[issue.Path] = issue.Reason
+	}
+	if got["/dim/color"] == "" || got["/title/colour"] == "" || len(got) != 2 {
+		t.Fatalf("issues = %+v, want one at /dim/color and one at /title/colour", invalid)
+	}
+	if got["/title/colour"] != "not allowed here" {
+		t.Errorf("unknown property reason = %q", got["/title/colour"])
+	}
+}
+
+func TestValidate_PointsAtTheRootForAMissingField(t *testing.T) {
+	var invalid Invalid
+	if !errors.As(Validate("title", []byte(`{}`)), &invalid) || len(invalid) != 1 || invalid[0].Path != "/" {
+		t.Fatalf("issues = %+v", invalid)
 	}
 }

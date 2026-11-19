@@ -5,6 +5,7 @@ package schema
 import (
 	"bytes"
 	"embed"
+	"errors"
 	"fmt"
 	"io/fs"
 	"slices"
@@ -12,7 +13,10 @@ import (
 	"sync"
 
 	"github.com/santhosh-tekuri/jsonschema/v6"
+	"github.com/santhosh-tekuri/jsonschema/v6/kind"
 	"github.com/tailscale/hujson"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 )
 
 //go:embed v1/*.schema.json
@@ -108,5 +112,58 @@ func Validate(kind string, jsonc []byte) error {
 	if err != nil {
 		return err
 	}
-	return s.Validate(doc)
+	err = s.Validate(doc)
+	var verr *jsonschema.ValidationError
+	if errors.As(err, &verr) {
+		return issues(verr)
+	}
+	return err
+}
+
+// Issue is one way a document breaks its schema.
+type Issue struct {
+	// Path is the JSON Pointer of the faulty value, "/" for the document.
+	Path   string
+	Reason string
+}
+
+// Invalid lists every Issue of a document that breaks its schema.
+type Invalid []Issue
+
+func (v Invalid) Error() string {
+	lines := make([]string, len(v))
+	for i, issue := range v {
+		lines[i] = issue.Path + ": " + issue.Reason
+	}
+	return strings.Join(lines, "\n")
+}
+
+var printer = message.NewPrinter(language.English)
+
+// issues keeps the leaves of the error tree: the composite ones (allOf,
+// if/then…) only say that a nested check failed.
+func issues(e *jsonschema.ValidationError) Invalid {
+	if len(e.Causes) > 0 {
+		var out Invalid
+		for _, c := range e.Causes {
+			out = append(out, issues(c)...)
+		}
+		return out
+	}
+	reason := e.ErrorKind.LocalizedString(printer)
+	if _, ok := e.ErrorKind.(*kind.FalseSchema); ok {
+		reason = "not allowed here"
+	}
+	return Invalid{{Path: pointer(e.InstanceLocation), Reason: reason}}
+}
+
+func pointer(tokens []string) string {
+	if len(tokens) == 0 {
+		return "/"
+	}
+	escaped := make([]string, len(tokens))
+	for i, t := range tokens {
+		escaped[i] = strings.NewReplacer("~", "~0", "/", "~1").Replace(t)
+	}
+	return "/" + strings.Join(escaped, "/")
 }
