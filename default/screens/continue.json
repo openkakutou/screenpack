@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/continue.schema.json",
+  "formatVersion": 1,
+  "music": null,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "portrait": { "anchor": "left", "offset": [10, 0], "size": [null, 55] },
+  "message": { "style": "heading", "anchor": "top", "offset": [20, 14] },
+  "countdown": { "style": "big", "anchor": "center", "offset": [20, -4] },
+  "menu": { "anchor": "center", "offset": [20, 18], "direction": "horizontal", "spacing": 20,
+            "style": "entry", "activeStyle": "active" },
+  "sounds": { "tick": "sounds/tick.ogg", "gameOver": "sounds/gameover.ogg" }
+}

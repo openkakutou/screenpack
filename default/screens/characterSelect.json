@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/characterSelect.schema.json",
+  "formatVersion": 1,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 250 }, "out": { "kind": "fade", "ms": 150 } },
+  "title": { "style": "heading", "anchor": "top", "offset": [0, 4] },
+  "grid": { "anchor": "bottom", "offset": [0, -5], "columns": 10, "rows": 3,
+            "cellSize": [9, 9], "spacing": [1, 1],
+            "cell": { "type": "rect", "color": "#1d1c2a" },
+            "emptyCell": { "type": "rect", "color": "#13131c" },
+            "random": { "type": "text", "text": "?", "style": "active" } },
+  "sort": { "by": "folder" },
+  "cursor": {
+    "p1": { "type": "image", "sheet": "images/cursor.json", "animation": "pulse" },
+    "p2": { "type": "image", "sheet": "images/cursor.json", "animation": "pulse", "opacity": 0.7 },
+    "both": { "type": "rect", "color": "#ffffff40" }
+  },
+  "portrait": { "p1": { "anchor": "left", "offset": [6, -10], "size": [null, 45] },
+                "p2": { "anchor": "right", "offset": [-6, -10], "size": [null, 45] },
+                "mirrorP2": true },
+  "name": { "p1": { "style": "name", "anchor": "left", "offset": [6, 16] },
+            "p2": { "style": "name", "anchor": "right", "offset": [-6, 16] } },
+  "palette": { "p1": { "style": "small", "anchor": "left", "offset": [6, 21] },
+               "p2": { "style": "small", "anchor": "right", "offset": [-6, 21] } }
+}

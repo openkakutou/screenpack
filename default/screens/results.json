@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/results.schema.json",
+  "formatVersion": 1,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 250 }, "out": { "kind": "fade", "ms": 150 } },
+  "winner": { "portrait": { "anchor": "left", "offset": [10, 0], "size": [null, 60] },
+              "name": { "style": "name", "anchor": "left", "offset": [10, 34] } },
+  "message": { "style": "heading", "anchor": "top", "offset": [20, 14] },
+  "score": { "style": "hint", "anchor": "top", "offset": [20, 24] },
+  "menu": { "anchor": "center", "offset": [20, 14], "spacing": 6.5, "style": "entry", "activeStyle": "active", "cursor": { "type": "rect", "size": [60, 6], "color": "#ff5c3833", "radius": 1 } }
+}

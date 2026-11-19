@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/stageSelect.schema.json",
+  "formatVersion": 1,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 250 }, "out": { "kind": "fade", "ms": 150 } },
+  "title": { "style": "heading", "anchor": "top", "offset": [0, 4] },
+  "sort": { "by": "displayName" },
+  "preview": { "anchor": "center", "offset": [0, -4], "size": [96, 54] },
+  "name": { "style": "name", "anchor": "bottom", "pivot": "top", "offset": [0, -22] },
+  "arrows": { "left": { "type": "image", "sheet": "images/arrows.json", "frame": "left",
+                        "anchor": "center", "offset": [-56, -4], "size": [6, 6] },
+              "right": { "type": "image", "sheet": "images/arrows.json", "frame": "right",
+                         "anchor": "center", "offset": [56, -4], "size": [6, 6] } }
+}

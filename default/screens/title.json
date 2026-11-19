@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/title.schema.json",
+  "formatVersion": 1,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 250 }, "out": { "kind": "fade", "ms": 150 } },
+  "logo": { "type": "image", "image": "images/logo.png", "anchor": "top", "offset": [0, 14], "size": [100, null],
+            "transition": { "in": { "kind": "scale", "from": 0.8, "ms": 400 } } },
+  "pressStart": { "style": "heading", "text": "Press start", "anchor": "bottom", "offset": [0, -22], "blinkMs": 600 },
+  "menu": { "anchor": "center", "pivot": "top", "offset": [0, 4], "spacing": 6.5, "visibleEntries": 6,
+            "style": "entry", "activeStyle": "active", "disabledStyle": "disabled",
+            "cursor": { "type": "rect", "size": [60, 6], "color": "#ff5c3833", "radius": 1 } },
+  "version": { "style": "small", "anchor": "bottomRight", "offset": [-2, -2] }
+}

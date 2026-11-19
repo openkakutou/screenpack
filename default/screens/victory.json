@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/victory.schema.json",
+  "formatVersion": 1,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 600 }, "out": { "kind": "fade", "ms": 600 } },
+  "portrait": { "anchor": "center", "offset": [0, -8], "size": [null, 60] },
+  "name": { "style": "name", "anchor": "bottom", "pivot": "bottom", "offset": [0, -18] },
+  "message": { "style": "hint", "anchor": "bottom", "offset": [0, -8] },
+  "durationMs": 8000
+}

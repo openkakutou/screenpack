@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/options.schema.json",
+  "formatVersion": 1,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 250 }, "out": { "kind": "fade", "ms": 150 } },
+  "title": { "style": "heading", "anchor": "top", "offset": [0, 4] },
+  "tabs": { "anchor": "top", "offset": [0, 16], "direction": "horizontal", "spacing": 24,
+            "style": "entry", "activeStyle": "active",
+            "cursor": { "type": "rect", "size": [22, 0.6], "color": "#ff5c38", "offset": [0, 3] } },
+  "menu": { "anchor": "center", "spacing": 6, "visibleEntries": 8, "style": "entry", "activeStyle": "active",
+            "disabledStyle": "disabled", "valueStyle": "value", "valueOffset": [40, 0], "cursor": { "type": "rect", "size": [60, 6], "color": "#ff5c3833", "radius": 1 } },
+  "controls": { "anchor": "center", "slotStyle": "value", "waitingStyle": "active" },
+  "hint": { "style": "hint", "anchor": "bottom", "offset": [0, -5] }
+}

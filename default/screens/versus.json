@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/versus.schema.json",
+  "formatVersion": 1,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 200 }, "out": { "kind": "fade", "ms": 300 } },
+  "foreground": [ { "type": "text", "text": "VS", "style": "big", "anchor": "center" } ],
+  "portrait": { "p1": { "anchor": "left", "offset": [8, 0], "size": [null, 60] },
+                "p2": { "anchor": "right", "offset": [-8, 0], "size": [null, 60] } },
+  "name": { "p1": { "style": "name", "anchor": "bottomLeft", "offset": [8, -10] },
+            "p2": { "style": "name", "anchor": "bottomRight", "offset": [-8, -10] } },
+  "stage": { "style": "hint", "anchor": "bottom", "offset": [0, -4] },
+  "durationMs": 3000
+}

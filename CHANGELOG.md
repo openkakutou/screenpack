@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- The default screenpack in `default/`: every screen of the format, original images and sounds (MIT, made by `tools/default-assets/generate.py`) and Noto Sans fonts (OFL-1.1), each asset's license recorded in `default/ASSETS.md`.
+
 ## [0.3.0] - 2026-11-19
 
 ### Added

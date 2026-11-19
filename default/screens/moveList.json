@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/moveList.schema.json",
+  "formatVersion": 1,
+  "music": null,
+  "background": [ { "type": "rect", "anchor": "topLeft", "size": [400, 100], "color": "#0e0f16e6" } ],
+  "title": { "style": "heading", "anchor": "top", "offset": [0, 4] },
+  "list": { "style": "default", "anchor": "top", "pivot": "top", "offset": [0, 16],
+            "visibleLines": 14, "lineSpacing": 5.5 },
+  "buttons": { "sheet": "images/buttons.json", "frames": {
+    "up": "up", "down": "down", "forward": "forward", "back": "back",
+    "a": "a", "b": "b", "c": "c", "x": "x", "y": "y", "z": "z", "start": "start" } },
+  "scrollbar": { "track": { "type": "rect", "anchor": "right", "offset": [-4, 4], "size": [0.6, 76], "color": "#2a2938" },
+                 "thumb": { "type": "rect", "anchor": "right", "offset": [-4, 4], "size": [0.6, 12], "color": "#ff5c38" } },
+  "sounds": { "move": "sounds/move.ogg" }
+}

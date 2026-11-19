@@ -26,3 +26,4 @@ MIT, see [LICENSE](LICENSE).
 
 - [Screenpack format](docs/format.md) — the specification, format version 1.
 - [JSON Schemas](schema/v1/) — one per file kind, for editors and validation.
+- [Default screenpack](default/) — every screen, the fallback for the others; [asset licenses](default/ASSETS.md).

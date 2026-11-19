@@ -35,7 +35,7 @@ screenpacks/
     └── fonts/                TTF, OTF or WOFF2
 ```
 
-Only `screenpack.json` is required. The `images/`, `sounds/` and `fonts/` folder names are a convention, not a rule: assets are found through the paths the files give.
+Only `screenpack.json` is required. The default screenpack, in this repository's [`default/`](../default/) folder, has every screen: it is the fallback and a complete reference to copy from. The `images/`, `sounds/` and `fonts/` folder names are a convention, not a rule: assets are found through the paths the files give.
 
 ## Syntax
 

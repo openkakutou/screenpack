@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/pause.schema.json",
+  "formatVersion": 1,
+  "music": null,
+  "transition": { "in": { "kind": "fade", "ms": 120 }, "out": { "kind": "fade", "ms": 120 } },
+  "dim": { "color": "#0e0f16b3" },
+  "title": { "style": "heading", "anchor": "center", "offset": [0, -22] },
+  "menu": { "anchor": "center", "pivot": "top", "offset": [0, -12], "spacing": 6.5,
+            "style": "entry", "activeStyle": "active", "disabledStyle": "disabled", "cursor": { "type": "rect", "size": [60, 6], "color": "#ff5c3833", "radius": 1 } }
+}
