@@ -7,3 +7,7 @@ Part of [OpenKakutou](https://github.com/openkakutou). Early stage: see `.vibe/b
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+## Documentation
+
+- [Screenpack format](docs/format.md) — the specification, format version 1.
