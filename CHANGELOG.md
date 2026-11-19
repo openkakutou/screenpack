@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-19
+
 ### Added
 - The default screenpack in `default/`: every screen of the format, original images and sounds (MIT, made by `tools/default-assets/generate.py`) and Noto Sans fonts (OFL-1.1), each asset's license recorded in `default/ASSETS.md`.
 
@@ -25,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Screenpack format specification (`docs/format.md`), format version 1: root `screenpack.json`, one JSONC file per screen with per-screen fallback to `default`, anchor + offset layout in screen-height units, sprite sheets, text styles, transitions, menus, music and sounds, every screen's parts, a complete example and the validation rules.
 
-[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/openkakutou/screenpack/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/openkakutou/screenpack/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/openkakutou/screenpack/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/openkakutou/screenpack/releases/tag/v0.1.0
