@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-20
+
+### Added
+- `screenpack.DefaultFS` returns the default screenpack built into the program, so a game can fall back on it without a folder on disk.
+
 ## [0.5.0] - 2026-11-19
 
 ### Added
@@ -32,7 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Screenpack format specification (`docs/format.md`), format version 1: root `screenpack.json`, one JSONC file per screen with per-screen fallback to `default`, anchor + offset layout in screen-height units, sprite sheets, text styles, transitions, menus, music and sounds, every screen's parts, a complete example and the validation rules.
 
-[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/openkakutou/screenpack/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/openkakutou/screenpack/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/openkakutou/screenpack/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/openkakutou/screenpack/compare/v0.2.0...v0.3.0
