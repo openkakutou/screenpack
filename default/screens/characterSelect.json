@@ -18,11 +18,11 @@
     "p2": { "type": "image", "sheet": "images/cursor.json", "animation": "pulse", "opacity": 0.7 },
     "both": { "type": "rect", "color": "#ffffff40" }
   },
-  "portrait": { "p1": { "anchor": "left", "offset": [6, -10], "size": [null, 45] },
-                "p2": { "anchor": "right", "offset": [-6, -10], "size": [null, 45] },
+  "portrait": { "p1": { "anchor": "left", "offset": [6, -14], "size": [null, 40] },
+                "p2": { "anchor": "right", "offset": [-6, -14], "size": [null, 40] },
                 "mirrorP2": true },
-  "name": { "p1": { "style": "name", "anchor": "left", "offset": [6, 16] },
-            "p2": { "style": "name", "anchor": "right", "offset": [-6, 16] } },
-  "palette": { "p1": { "style": "small", "anchor": "left", "offset": [6, 21] },
-               "p2": { "style": "small", "anchor": "right", "offset": [-6, 21] } }
+  "name": { "p1": { "style": "name", "anchor": "left", "offset": [6, 10] },
+            "p2": { "style": "name", "anchor": "right", "offset": [-6, 10] } },
+  "palette": { "p1": { "style": "small", "anchor": "left", "offset": [6, 14.5] },
+               "p2": { "style": "small", "anchor": "right", "offset": [-6, 14.5] } }
 }
