@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.2] - 2026-11-20
+
+### Fixed
+- Default pack: on the character select, the large portrait, name and palette sit higher so the name no longer overlaps the grid's top row.
+
 ## [0.6.1] - 2026-11-20
 
 ### Fixed
@@ -42,7 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Screenpack format specification (`docs/format.md`), format version 1: root `screenpack.json`, one JSONC file per screen with per-screen fallback to `default`, anchor + offset layout in screen-height units, sprite sheets, text styles, transitions, menus, music and sounds, every screen's parts, a complete example and the validation rules.
 
-[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.6.1...HEAD
+[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.6.2...HEAD
+[0.6.2]: https://github.com/openkakutou/screenpack/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/openkakutou/screenpack/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/openkakutou/screenpack/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/openkakutou/screenpack/compare/v0.4.0...v0.5.0
