@@ -22,6 +22,9 @@ type Screenpack struct {
 	TextStyles map[StyleID]TextStyle
 	Sounds     Sounds
 	Music      *Music
+	// WarningColor tints what the game flags as a problem; empty means the
+	// format's default, #dc3c3c.
+	WarningColor string
 	// Screens holds the screens the pack has; a nil one falls back to the
 	// default screenpack's.
 	Screens Screens
@@ -40,6 +43,8 @@ type rootFile struct {
 	TextStyles map[StyleID]TextStyle `json:"textStyles"`
 	Sounds     Sounds                `json:"sounds"`
 	Music      *Music                `json:"music"`
+	// WarningColor is the root file's "warningColor".
+	WarningColor string `json:"warningColor"`
 }
 
 // Sounds maps a sound name (move, confirm, cancel, error, and a screen's
@@ -137,12 +142,15 @@ type Menu struct {
 	Style          StyleID     `json:"style"`
 	ActiveStyle    StyleID     `json:"activeStyle"`
 	DisabledStyle  StyleID     `json:"disabledStyle"`
+	FlaggedStyle   StyleID     `json:"flaggedStyle"`
 	Cursor         *Element    `json:"cursor"`
 	Order          []string    `json:"order"`
 	Hidden         []string    `json:"hidden"`
 	Sounds         Sounds      `json:"sounds"`
 	ValueStyle     StyleID     `json:"valueStyle"`
 	ValueOffset    *[2]float64 `json:"valueOffset"`
+	// ValueOffsets places each value column of an entry with several values.
+	ValueOffsets [][2]float64 `json:"valueOffsets"`
 }
 
 // Sort is a select screen's order rule.
@@ -346,6 +354,20 @@ type Victory struct {
 	DurationMs *int      `json:"durationMs"`
 }
 
+// Error is the screen showing a problem the game reports.
+type Error struct {
+	Screen
+	Title   *TextPart     `json:"title"`
+	Message *ErrorMessage `json:"message"`
+	Hint    *TextPart     `json:"hint"`
+}
+
+// ErrorMessage is the error text, wrapped inside Width units.
+type ErrorMessage struct {
+	TextPart
+	Width float64 `json:"width"`
+}
+
 // Screens are a screenpack's screens; nil means the pack does not have it.
 type Screens struct {
 	Title           *Title
@@ -359,6 +381,7 @@ type Screens struct {
 	Results         *Results
 	Continue        *Continue
 	Victory         *Victory
+	Error           *Error
 }
 
 // slot returns a new screen value for a screen name and stores it in s, or
@@ -398,6 +421,9 @@ func (s *Screens) slot(name string) any {
 	case "victory":
 		s.Victory = &Victory{}
 		return s.Victory
+	case "error":
+		s.Error = &Error{}
+		return s.Error
 	}
 	return nil
 }

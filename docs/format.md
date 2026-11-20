@@ -86,6 +86,7 @@ The diagram shows one element hung 4 units left of and below the screen's top-ri
 | `textStyles` | object | Named text styles (see [Text styles](#text-styles)), usable by every screen. Must include `default`. |
 | `sounds` | object | Default menu sounds, used by every screen that does not set its own: `move`, `confirm`, `cancel`, `error`, each a sound path. |
 | `music` | object, optional | Default music (see [Music](#music)) for screens that set none. |
+| `warningColor` | color, optional | Tint the game gives an entry it flags as a problem (e.g. two actions on one key) when a menu has no `flaggedStyle`. Default `#dc3c3c`. |
 
 ## Common building blocks
 
@@ -138,7 +139,7 @@ An element shows a sheet with `"sheet": "images/cursor.json", "animation": "blin
 | `font` | font id | One of the root `fonts`. |
 | `size` | number > 0 | Line height in units. |
 | `color` | color | Fill color. |
-| `align` | `left`, `center`, `right` | Alignment against the element's position. Default `left`. |
+| `align` | `left`, `center`, `right` | Alignment of lines, and of menu entries, against each other. A lone text element is placed by its pivot only (its box is its own width), so `align` has no effect on it. Default `left`. |
 | `outline` | `{ "color", "width" }` | Optional outline, width in units. |
 | `shadow` | `{ "color", "offset": [x, y] }` | Optional drop shadow, offset in units. |
 | `uppercase` | boolean | Default `false`. |
@@ -168,6 +169,7 @@ Screens with a menu give it a `menu` part. The game decides the **entries** (fro
 | `spacing` | number | Distance between entries, in units. |
 | `visibleEntries` | integer ≥ 1, optional | Entries shown at once; the menu scrolls beyond. Default: all. |
 | `style`, `activeStyle`, `disabledStyle` | text style ids | Entry text, the entry under the cursor, an entry the game greys out. |
+| `flaggedStyle` | text style id, optional | An entry the game flags as a problem (e.g. two actions on one key). Without it the game uses `activeStyle` or `style` tinted with the root `warningColor`. |
 | `cursor` | element | Drawn behind the active entry (an `image` or `rect`), moving with it. |
 | `order` | array of entry ids | Entries listed first, in this order; entries not listed follow in the game's order. Unknown ids are ignored, so a screenpack keeps working when the game's entries change. |
 | `hidden` | array of entry ids | Entries not shown. An entry the game requires to leave the screen (`back`, `continue` on pause) cannot be hidden. |
@@ -204,7 +206,7 @@ The screen file names match `game`'s built-in screen types (game#032) and its mo
 |---|---|---|
 | `logo` | `image` element | — (the screenpack's art) |
 | `menu` | [menu](#menus) | The installed modes, then `options`, `exit` (native only). |
-| `pressStart` | `text` (style), `blinkMs` | "Press start" before the menu opens; `blinkMs` 0 = steady. |
+| `pressStart` | `text` (style), `blinkMs` | "Press start" before the menu opens; `blinkMs` is the half-period: the text shows for `blinkMs`, then hides for `blinkMs`; 0 = steady. |
 | `version` | `style` | The game version. |
 
 ### `characterSelect.json` — character select
@@ -250,8 +252,8 @@ The screen file names match `game`'s built-in screen types (game#032) and its mo
 
 | Part | Fields | The game fills it with |
 |---|---|---|
-| `tabs` | [menu](#menus) (usually `horizontal`) | The option pages: `gameplay`, `audio`, `video`, `controls`, `appearance`. |
-| `menu` | [menu](#menus), plus `valueStyle`, `valueOffset` [x, y] | The current page's settings and their values. |
+| `tabs` | [menu](#menus) (usually `horizontal`) | The option pages: `gameplay`, `audio`, `video`, `controls`, `appearance`. Optional for a game: one that shows options as pages (a list, then one page per item) uses `menu` for both and does not draw `tabs`. |
+| `menu` | [menu](#menus), plus `valueStyle`, `valueOffset` [x, y], `valueOffsets` [[x, y], …] | The current page's settings and their values. An entry with several values (key and button on the controls page) takes one `valueOffsets` pair per value column; without it, `valueOffset` places the last value and the others are spread evenly between the label and it. |
 | `controls` | `slotStyle`, `waitingStyle` + layout | On the `controls` page: each action and its bound key or button; `waitingStyle` while waiting for a press. |
 | `hint` | `style` + layout | A one-line help for the selected setting. |
 | `title` | `style` + layout | The screen title. |
@@ -302,6 +304,28 @@ Option values are settings (`gameplay.json`, `audio.json`, `video.json`, `contro
 | `name` | `style` + layout | Its name. |
 | `message` | `style` + layout | The victory text. |
 | `durationMs` | integer ≥ 0 | How long before returning to the title; a confirm press skips. Default `8000`. |
+
+### `error.json` — error
+
+| Part | Fields | The game fills it with |
+|---|---|---|
+| `title` | `style` + layout | The error heading. |
+| `message` | `style`, `width` (units, > 0) + layout | The error text, wrapped inside `width`. |
+| `hint` | `style` + layout | How to leave the screen. |
+
+The screen is optional like every other: a pack without it uses the default's.
+
+`screens/error.json`:
+
+```jsonc
+{
+  "formatVersion": 1,
+  "music": null,
+  "title": { "style": "heading", "anchor": "top", "offset": [0, 4] },
+  "message": { "style": "default", "anchor": "center", "pivot": "center", "width": 110 },
+  "hint": { "style": "hint", "anchor": "bottom", "offset": [0, -5] }
+}
+```
 
 ## Example: a complete screenpack
 

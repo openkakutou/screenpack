@@ -72,3 +72,24 @@ func isAsset(p string) bool {
 	}
 	return false
 }
+
+func TestDefault_HasAnErrorScreenAndKeepsOptionValuesInsideTheCursor(t *testing.T) {
+	sp, err := Load(os.DirFS(defaultDir))
+	if err != nil {
+		t.Fatal(err)
+	}
+	e := sp.Screens.Error
+	if e == nil || e.Title == nil || e.Message == nil || e.Hint == nil {
+		t.Fatalf("error screen = %+v", e)
+	}
+	if e.Message.Width != 110 {
+		t.Errorf("message width = %v, want 110", e.Message.Width)
+	}
+	if sp.WarningColor != "#dc3c3c" {
+		t.Errorf("warning color = %q", sp.WarningColor)
+	}
+	want := [][2]float64{{30, 0}, {50, 0}}
+	if got := sp.Screens.Options.Menu.ValueOffsets; !reflect.DeepEqual(got, want) {
+		t.Errorf("value offsets = %v, want %v", got, want)
+	}
+}

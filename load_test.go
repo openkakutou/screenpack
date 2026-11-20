@@ -231,3 +231,32 @@ func TestProblems_ErrorListsEachOne(t *testing.T) {
 		t.Errorf("Error() = %q", err.Error())
 	}
 }
+
+func TestLoad_ReadsWarningColorAndChecksFlaggedStyle(t *testing.T) {
+	fsys := valid()
+	fsys["screenpack.json"] = file(strings.Replace(root, `"sounds"`, `"warningColor": "#aa0000", "sounds"`, 1))
+	fsys["screens/pause.json"] = file(`{ "formatVersion": 1, "menu": { "flaggedStyle": "active" } }`)
+	fsys["screens/error.json"] = file(`{ "formatVersion": 1, "message": { "style": "default", "width": 110 } }`)
+	sp, err := Load(fsys)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if sp.WarningColor != "#aa0000" {
+		t.Errorf("warning color = %q", sp.WarningColor)
+	}
+	if sp.Screens.Pause.Menu.FlaggedStyle != "active" {
+		t.Errorf("flagged style = %q", sp.Screens.Pause.Menu.FlaggedStyle)
+	}
+	if sp.Screens.Error == nil || sp.Screens.Error.Message.Width != 110 {
+		t.Errorf("error screen = %+v", sp.Screens.Error)
+	}
+}
+
+func TestLoad_ReportsUnknownFlaggedStyle(t *testing.T) {
+	fsys := valid()
+	fsys["screens/pause.json"] = file(`{ "formatVersion": 1, "menu": { "flaggedStyle": "nope" } }`)
+	got := problems(t, fsys)
+	if got["screens/pause.json /menu/flaggedStyle"] == "" {
+		t.Errorf("problems = %v", got)
+	}
+}

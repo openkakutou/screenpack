@@ -113,3 +113,17 @@ func TestScreenName_MatchesTheSchemaScreens(t *testing.T) {
 		}
 	}
 }
+
+func TestResolve_BorrowsTheErrorScreenFromTheDefault(t *testing.T) {
+	def := loadDefault(t)
+	r, err := Resolve(onlyTitle(t), def)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if r.Screens.Error != def.Screens.Error {
+		t.Error("a pack without an error screen gets the default's")
+	}
+	if got := r.Source("error", ""); got != FromDefault {
+		t.Errorf("error source = %v", got)
+	}
+}

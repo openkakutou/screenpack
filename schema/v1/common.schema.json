@@ -511,6 +511,9 @@
         "disabledStyle": {
           "$ref": "#/$defs/id"
         },
+        "flaggedStyle": {
+          "$ref": "#/$defs/id"
+        },
         "cursor": {
           "$ref": "#/$defs/element"
         },
@@ -562,6 +565,13 @@
         },
         "valueOffset": {
           "$ref": "#/$defs/pair"
+        },
+        "valueOffsets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pair"
+          }
         }
       }
     },

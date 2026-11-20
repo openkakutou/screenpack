@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 # Format gaps found by the native game (game item 030)
 
@@ -13,4 +13,4 @@ Drawing the game's screens from the default pack (game ADR 025) hit points the f
 - `tabs` on the options screen: the game's options are pages (list, then one screen per page), not tabs; say whether `tabs` is required to be drawn.
 
 ## Acceptance Criteria
-- [ ] Each point above is settled in `docs/format.md` and the schemas, and the default pack uses the result
+- [x] Each point above is settled in `docs/format.md` and the schemas, and the default pack uses the result

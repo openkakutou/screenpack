@@ -105,6 +105,15 @@ func TestValidate_RejectsWithThePath(t *testing.T) {
 		{"path leaving the folder", "title", `{"formatVersion": 1, "music": {"file": "../x.ogg"}}`, "/music/file"},
 		{"asset in a MUGEN format", "title", `{"formatVersion": 1, "logo": {"type": "image", "image": "logo.sff"}}`, "/logo"},
 		{"element without its type's field", "pause", `{"formatVersion": 1, "foreground": [{"type": "rect"}]}`, "/foreground/0"},
+		{"bad warning color", "screenpack", `{"formatVersion": 1, "name": "n", "author": "a", "version": "1",
+			"fonts": {}, "textStyles": {"default": {"font": "f", "size": 1, "color": "#ffffff"}},
+			"sounds": {"move": "m.ogg", "confirm": "c.ogg", "cancel": "x.ogg", "error": "e.ogg"},
+			"warningColor": "red"}`, "/warningColor"},
+		{"value offsets of a wrong shape", "options", `{"formatVersion": 1, "menu": {"valueOffsets": [[30]]}}`, "/menu/valueOffsets/0"},
+		{"empty value offsets", "options", `{"formatVersion": 1, "menu": {"valueOffsets": []}}`, "/menu/valueOffsets"},
+		{"flagged style that is not an id", "pause", `{"formatVersion": 1, "menu": {"flaggedStyle": 3}}`, "/menu/flaggedStyle"},
+		{"error message without a positive width", "error", `{"formatVersion": 1, "message": {"width": 0}}`, "/message/width"},
+		{"unknown part on the error screen", "error", `{"formatVersion": 1, "menu": {}}`, "/menu"},
 		{"sound key of another screen", "pause", `{"formatVersion": 1, "sounds": {"tick": "t.ogg"}}`, "/sounds"},
 	}
 	for _, c := range cases {
@@ -215,5 +224,18 @@ func TestValidate_PointsAtTheRootForAMissingField(t *testing.T) {
 	var invalid Invalid
 	if !errors.As(Validate("title", []byte(`{}`)), &invalid) || len(invalid) != 1 || invalid[0].Path != "/" {
 		t.Fatalf("issues = %+v", invalid)
+	}
+}
+
+func TestValidate_AcceptsTheNewOptionalFields(t *testing.T) {
+	docs := map[string]string{
+		"options": `{"formatVersion": 1, "menu": {"valueOffsets": [[30, 0], [50, 0]], "flaggedStyle": "bad"}}`,
+		"error": `{"formatVersion": 1, "music": null, "title": {"style": "heading"},
+			"message": {"style": "default", "width": 110}, "hint": {"style": "hint"}}`,
+	}
+	for kind, doc := range docs {
+		if err := Validate(kind, []byte(doc)); err != nil {
+			t.Errorf("%s: %v", kind, err)
+		}
 	}
 }

@@ -53,7 +53,7 @@ func Load(fsys fs.FS) (*Screenpack, error) {
 	var root rootFile
 	l.rootOK = l.read(RootFile, "screenpack", &root)
 	if l.rootOK {
-		sp.Name, sp.Author, sp.Version = root.Name, root.Author, root.Version
+		sp.Name, sp.Author, sp.Version, sp.WarningColor = root.Name, root.Author, root.Version, root.WarningColor
 		sp.Fonts, sp.TextStyles, sp.Sounds, sp.Music = root.Fonts, root.TextStyles, root.Sounds, root.Music
 		l.fonts, l.rootStyles = root.Fonts, root.TextStyles
 		l.check(RootFile, &root, nil)

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/error.schema.json",
+  "title": "Screenpack screen: error",
+  "description": "screens/error.json of a screenpack. See docs/format.md.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/screen"
+    }
+  ],
+  "properties": {
+    "title": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    },
+    "message": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/layout"
+        }
+      ],
+      "properties": {
+        "style": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "hint": {
+      "$ref": "common.schema.json#/$defs/textPart"
+    }
+  },
+  "unevaluatedProperties": false
+}

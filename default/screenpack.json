@@ -30,5 +30,6 @@
     "cancel": "sounds/cancel.ogg",
     "error": "sounds/error.ogg"
   },
-  "music": { "file": "sounds/theme.ogg", "volume": 0.6 }
+  "music": { "file": "sounds/theme.ogg", "volume": 0.6 },
+  "warningColor": "#dc3c3c"
 }

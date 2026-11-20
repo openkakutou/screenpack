@@ -11,7 +11,7 @@
             "style": "entry", "activeStyle": "active",
             "cursor": { "type": "rect", "size": [22, 0.6], "color": "#ff5c38", "offset": [0, 3] } },
   "menu": { "anchor": "top", "pivot": "top", "offset": [0, 22], "spacing": 6, "visibleEntries": 8, "style": "entry", "activeStyle": "active",
-            "disabledStyle": "disabled", "valueStyle": "value", "valueOffset": [40, 0], "cursor": { "type": "rect", "size": [110, 6], "color": "#ff5c3833", "radius": 1 } },
+            "disabledStyle": "disabled", "valueStyle": "value", "valueOffset": [40, 0], "valueOffsets": [[30, 0], [50, 0]], "cursor": { "type": "rect", "size": [110, 6], "color": "#ff5c3833", "radius": 1 } },
   "controls": { "anchor": "center", "slotStyle": "value", "waitingStyle": "active" },
   "hint": { "style": "hint", "anchor": "bottom", "offset": [0, -5] }
 }

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openkakutou/screenpack/main/schema/v1/error.schema.json",
+  "formatVersion": 1,
+  "music": null,
+  "background": [
+    { "type": "image", "image": "images/background.png", "anchor": "topLeft", "size": [400, 100] },
+    { "type": "image", "image": "images/grid.png", "anchor": "topLeft", "size": [400, 100], "tile": "both", "opacity": 0.6 }
+  ],
+  "transition": { "in": { "kind": "fade", "ms": 250 }, "out": { "kind": "fade", "ms": 150 } },
+  "title": { "style": "heading", "anchor": "top", "offset": [0, 4] },
+  "message": { "style": "default", "anchor": "center", "pivot": "center", "width": 110 },
+  "hint": { "style": "hint", "anchor": "bottom", "offset": [0, -5] }
+}
