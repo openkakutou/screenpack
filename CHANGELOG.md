@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-20
+
+### Added
+- Screenpacks can set the colour the game gives to a problem it flags (`warningColor`), and a menu can pick the text style of a flagged entry (`flaggedStyle`).
+- A menu can place each value column of an entry with several values, such as a key and a button (`valueOffsets`).
+- A new optional error screen (title, wrapped message, hint); a pack without it gets the default's, which is now part of the default screenpack.
+- The format now states how a blinking prompt times its blinks, that text alignment only applies between lines and entries, and that the options tabs are optional for a game.
+
 ## [0.6.2] - 2026-11-20
 
 ### Fixed
@@ -47,7 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Screenpack format specification (`docs/format.md`), format version 1: root `screenpack.json`, one JSONC file per screen with per-screen fallback to `default`, anchor + offset layout in screen-height units, sprite sheets, text styles, transitions, menus, music and sounds, every screen's parts, a complete example and the validation rules.
 
-[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.6.2...HEAD
+[Unreleased]: https://github.com/openkakutou/screenpack/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/openkakutou/screenpack/compare/v0.6.2...v0.7.0
 [0.6.2]: https://github.com/openkakutou/screenpack/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/openkakutou/screenpack/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/openkakutou/screenpack/compare/v0.5.0...v0.6.0
