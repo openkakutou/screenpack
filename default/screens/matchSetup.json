@@ -7,6 +7,6 @@
   ],
   "transition": { "in": { "kind": "fade", "ms": 250 }, "out": { "kind": "fade", "ms": 150 } },
   "title": { "style": "heading", "anchor": "top", "offset": [0, 4] },
-  "menu": { "anchor": "center", "spacing": 7, "style": "entry", "activeStyle": "active",
-            "valueStyle": "value", "valueOffset": [30, 0], "cursor": { "type": "rect", "size": [60, 6], "color": "#ff5c3833", "radius": 1 } }
+  "menu": { "anchor": "top", "pivot": "top", "offset": [0, 30], "spacing": 7, "style": "entry", "activeStyle": "active",
+            "valueStyle": "value", "valueOffset": [30, 0], "cursor": { "type": "rect", "size": [90, 6], "color": "#ff5c3833", "radius": 1 } }
 }
